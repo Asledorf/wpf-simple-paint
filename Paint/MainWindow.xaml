@@ -1,0 +1,69 @@
+﻿<Window x:Name="window" x:Class="Paint.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+		xmlns:local="clr-namespace:Paint"
+		mc:Ignorable="d"
+		Title="Paint" Height="450" Width="800" Icon="/Paint.ico"  >
+	<DockPanel x:Name="dp">
+		<ToolBar x:Name="ToolBar" DockPanel.Dock="Top" Height="31" Foreground="Black">
+			<ToolBar.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FF31F5C9" Offset="1"/>
+					<GradientStop Color="#FF21977C" Offset="0"/>
+				</LinearGradientBrush>
+			</ToolBar.Background>
+
+            <Separator Background="#FF515151"/>
+
+            <RadioButton x:Name="btnDraw" GroupName="DrawGroup" BorderBrush="{x:Null}" HorizontalAlignment="Center" Checked="btnDraw_Checked" Width="80" Height="30" IsChecked="False" Background="{x:Null}">
+				<StackPanel Orientation="Horizontal">
+					<Label>Draw</Label>
+					<Image Width="20" Height="20" Source="/Brush_16x.png" />
+				</StackPanel>
+			</RadioButton>
+            
+			<Separator Background="#FF515151"/>
+            
+			<RadioButton x:Name="btnErase" GroupName="DrawGroup" BorderBrush="#00000000" Checked="btnErase_Checked" Width="80" Height="30" HorizontalAlignment="Left">
+				<StackPanel Orientation="Horizontal">
+					<Label>Erase</Label>
+					<Image Width="20" Height="20" Source="/Eraser_16x.png" />
+				</StackPanel>
+			</RadioButton>
+            
+            <Separator Background="#FF515151"/>
+            
+			<RadioButton x:Name="btnSelect" GroupName="DrawGroup" BorderBrush="#00000000" Checked="btnSelect_Checked" Width="80" Height="30" HorizontalAlignment="Left">
+				<StackPanel Orientation="Horizontal">
+					<Label>Select</Label>
+					<Image Width="20" Height="20" Source="/Select_16x.png" />
+				</StackPanel>
+			</RadioButton>
+            
+            <Separator Background="#FF515151"/>
+            
+			<Label Content="Brush Size:" VerticalAlignment="Center"/>
+			<ComboBox HorizontalAlignment="Left" Name="cboBrushSize" VerticalAlignment="Center" Height="23" Width="50" SelectionChanged="cboBrushSize_SelectionChanged"  DropDownClosed="cboBrushSize_DropDownClosed">
+				<ComboBoxItem Content="3"   />
+				<ComboBoxItem Content="5"   IsSelected="True"/>
+				<ComboBoxItem Content="10"  />
+				<ComboBoxItem Content="14"  />
+			</ComboBox>
+            
+            <Separator Background="#FF515151"/>
+            
+			<Label Content="Color:" VerticalAlignment="Center"/>
+            <xctk:ColorPicker Name="Color" Height="23" Width="45" SelectedColorChanged="Color_SelectedColorChanged" BorderBrush="#00000000" Foreground="#00000000" HorizontalAlignment="Right"/>
+            
+            <Separator Background="#FF515151"/>
+		</ToolBar>
+		<InkCanvas Name="DrawingCanvas">
+			<InkCanvas.DefaultDrawingAttributes>
+				<DrawingAttributes x:Name="BrushAttrib" Width="5" Height="5" Color="Black"/>
+			</InkCanvas.DefaultDrawingAttributes>
+		</InkCanvas>
+	</DockPanel>
+</Window>
